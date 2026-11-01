@@ -1,0 +1,4 @@
+# DevBuddy
+
+
+DevBuddy adalah sistem onboarding terpadu yang bertujuan untuk mempercepat proses adaptasi teknis bagi software engineer baru saat pertama kali bergabung ke dalam tim pengembangan perangkat lunak. Project ini menyelesaikan permasalahan rumitnya konfigurasi lingkungan kerja lokal (development environment), tersebarnya dokumentasi codebase, serta tingginya ketergantungan anggota baru pada engineer senior untuk menanyakan hal-hal teknis mendasar. Target pengguna utama dari project ini adalah software engineer baru (new hires), mahasiswa intern IT, serta mentor (Onboarding Buddy) dan Engineering Manager. Fungsi utama AI Agent yang dikembangkan melalui IBM Bob adalah menghasilkan antarmuka dashboard interaktif berbasis web yang mengintegrasikan pelacak progres onboarding, daftar periksa instalasi perangkat kerja (Dev Setup Checklist), tautan cepat arsitektur sistem, serta panel asisten tanya-jawab (AI Buddy Q&A) sebagai panduan teknis mandiri
