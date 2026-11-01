@@ -1,0 +1,1066 @@
+/* ================================================================
+   IT DEVELOPER ONBOARDING BUDDY SYSTEM — style.css
+   Theme: Dark Developer  |  Pure CSS3, no frameworks
+   ================================================================ */
+
+/* ================================================================
+   1. CSS CUSTOM PROPERTIES (:root)
+   ================================================================ */
+:root {
+  /* — Brand colours — */
+  --color-bg:           #0F172A;   /* primary background */
+  --color-surface:      #1E293B;   /* card / sidebar surface */
+  --color-surface-2:    #263044;   /* slightly elevated surface */
+  --color-border:       #334155;   /* subtle dividers */
+
+  /* — Accent colours — */
+  --color-teal:         #0D9488;   /* primary accent */
+  --color-teal-dim:     rgba(13, 148, 136, 0.15);
+  --color-teal-glow:    rgba(13, 148, 136, 0.35);
+  --color-blue:         #3B82F6;   /* secondary accent */
+  --color-blue-dim:     rgba(59, 130, 246, 0.15);
+
+  /* — Status badge colours — */
+  --color-green:        #10B981;   /* Completed */
+  --color-green-dim:    rgba(16, 185, 129, 0.15);
+  --color-amber:        #F59E0B;   /* In Progress */
+  --color-amber-dim:    rgba(245, 158, 11, 0.15);
+  --color-slate:        #64748B;   /* Pending */
+  --color-slate-dim:    rgba(100, 116, 139, 0.15);
+
+  /* — Text colours — */
+  --color-text-primary:   #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted:     #64748B;
+  --color-text-code:      #7DD3C8;
+
+  /* — Semantic — */
+  --color-warn:           #F59E0B;
+
+  /* — Sizing & shape — */
+  --radius:           12px;
+  --radius-sm:        8px;
+  --radius-xs:        5px;
+  --sidebar-width:    240px;
+
+  /* — Shadows — */
+  --shadow-card:      0 2px 12px rgba(0, 0, 0, 0.35);
+  --shadow-raised:    0 4px 24px rgba(0, 0, 0, 0.45);
+
+  /* — Typography — */
+  --font-sans:  -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono:  "Cascadia Code", "Fira Code", "JetBrains Mono", monospace;
+}
+
+/* ================================================================
+   2. RESET & BASE
+   ================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ================================================================
+   3. LAYOUT — Sidebar + Main two-column grid
+   ================================================================ */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+/* ================================================================
+   4. SIDEBAR
+   ================================================================ */
+.sidebar {
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 0 0 24px;
+}
+
+/* — Brand — */
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 8px;
+}
+
+.sidebar__logo {
+  color: var(--color-teal);
+  font-size: 1.1rem;
+}
+
+.sidebar__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+
+/* — Section labels — */
+.sidebar__section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 16px 20px 6px;
+}
+
+/* — Nav list — */
+.sidebar__list {
+  padding: 0 10px;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar__item:hover {
+  background-color: var(--color-surface-2);
+  color: var(--color-text-primary);
+}
+
+.sidebar__item--active {
+  background-color: var(--color-teal-dim);
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.sidebar__icon {
+  font-size: 0.9rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* — Footer — */
+.sidebar__nav {
+  flex: 1;
+}
+
+.sidebar__footer {
+  padding: 16px 20px 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+
+.sidebar__footer-text {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* ================================================================
+   5. MAIN CONTENT AREA
+   ================================================================ */
+.main {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-x: hidden;
+}
+
+/* ================================================================
+   6. TOP HEADER (topbar)
+   ================================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.topbar__greeting {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.topbar__name {
+  color: var(--color-teal);
+}
+
+.topbar__subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.topbar__profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topbar__role {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.topbar__dept {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* ================================================================
+   7. BADGES (shared)
+   ================================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Day 1 */
+.badge--day1 {
+  background-color: var(--color-teal-dim);
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal);
+  font-size: 0.7rem;
+  padding: 5px 14px;
+  letter-spacing: 0.12em;
+}
+
+/* Online */
+.badge--online {
+  background-color: var(--color-green-dim);
+  color: var(--color-green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Away */
+.badge--away {
+  background-color: var(--color-amber-dim);
+  color: var(--color-amber);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* AI */
+.badge--ai {
+  background-color: var(--color-blue-dim);
+  color: var(--color-blue);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* ================================================================
+   8. KPI CARDS
+   ================================================================ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.kpi-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.kpi-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-card__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-secondary);
+}
+
+.kpi-card__icon {
+  font-size: 1.1rem;
+}
+
+.kpi-card__icon--teal { color: var(--color-teal); }
+.kpi-card__icon--blue { color: var(--color-blue); }
+
+.kpi-card__value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+.kpi-card__value--md {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.kpi-card__value-sub {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.kpi-card__sub {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.kpi-card__badge-row {
+  display: flex;
+  align-items: center;
+}
+
+/* — Progress bar — */
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.progress-bar__fill--teal  { background-color: var(--color-teal); }
+.progress-bar__fill--blue  { background-color: var(--color-blue); }
+.progress-bar__fill--warn  { background-color: var(--color-warn); }
+
+/* ================================================================
+   9. SHARED CARD SHELL
+   ================================================================ */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.card__tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background-color: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* — Content grids — */
+.content-grid,
+.bottom-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.content-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.bottom-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ================================================================
+   10. DEV ENVIRONMENT SETUP CHECKLIST (Layer 2)
+   ================================================================ */
+
+/* — Individual checklist row — */
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  margin-bottom: 10px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.checklist-item:last-child {
+  margin-bottom: 0;
+}
+
+.checklist-item:hover {
+  background-color: var(--color-surface-2);
+}
+
+/* — Completed state — teal left-accent — */
+.checklist-item--done {
+  border-left: 3px solid var(--color-green);
+  background-color: rgba(16, 185, 129, 0.04);
+}
+
+/* — In-progress state — amber left-accent — */
+.checklist-item--progress {
+  border-left: 3px solid var(--color-amber);
+  background-color: rgba(245, 158, 11, 0.04);
+}
+
+/* — Pending state — slate left-accent — */
+.checklist-item--pending {
+  border-left: 3px solid var(--color-slate);
+  background-color: rgba(100, 116, 139, 0.04);
+}
+
+/* — Legend row: all three badge pills in the card header — */
+.checklist-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* — Native checkbox — */
+.checklist-item__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface-2);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.checklist-item__checkbox:checked {
+  background-color: var(--color-teal);
+  border-color: var(--color-teal);
+}
+
+.checklist-item__checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* — Label — */
+.checklist-item__label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.checklist-item__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.checklist-item--done .checklist-item__title {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+.checklist-item__desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+/* ================================================================
+   STATUS BADGE PILLS — Checklist items
+   (Completed = green #10B981, In Progress = amber #F59E0B,
+    Pending = slate #64748B)
+   ================================================================ */
+.checklist-item__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Completed — green */
+.checklist-item__status--done {
+  background-color: var(--color-green-dim);
+  color: var(--color-green);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.checklist-item__status--done::before {
+  content: "✓";
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+/* In Progress — amber */
+.checklist-item__status--progress {
+  background-color: var(--color-amber-dim);
+  color: var(--color-amber);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.checklist-item__status--progress::before {
+  content: "◐";
+  font-size: 0.72rem;
+}
+
+/* Pending — slate */
+.checklist-item__status--pending {
+  background-color: var(--color-slate-dim);
+  color: var(--color-slate);
+  border: 1px solid rgba(100, 116, 139, 0.35);
+}
+
+.checklist-item__status--pending::before {
+  content: "○";
+  font-size: 0.72rem;
+}
+
+/* ================================================================
+   11. AI ONBOARDING BUDDY Q&A PANEL (Layer 3) — Glassmorphism
+   ================================================================ */
+
+/*
+   Glassmorphism effect:
+   - semi-transparent backdrop-filter blur surface
+   - glowing teal border with animated box-shadow pulse
+   - subtle radial teal gradient overlay on the card background
+*/
+.qa-card {
+  /* Standalone card base — NOT inheriting .card */
+  padding: 24px;
+  border-radius: var(--radius);
+
+  /* Glassmorphism surface */
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.72) 0%,
+    rgba(13, 148, 136, 0.06) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* Glowing teal border */
+  border: 1px solid rgba(13, 148, 136, 0.55);
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px rgba(13, 148, 136, 0.18),
+    0 0 24px rgba(13, 148, 136, 0.18),
+    0 0 48px rgba(13, 148, 136, 0.09);
+
+  /* Animated glow pulse */
+  animation: qa-glow-pulse 3.5s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial teal highlight in the top-left corner */
+.qa-card::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.14) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* Keyframe: glow intensity breathes */
+@keyframes qa-glow-pulse {
+  from {
+    box-shadow:
+      var(--shadow-card),
+      0 0 0 1px rgba(13, 148, 136, 0.18),
+      0 0 20px rgba(13, 148, 136, 0.16),
+      0 0 40px rgba(13, 148, 136, 0.08);
+  }
+  to {
+    box-shadow:
+      var(--shadow-card),
+      0 0 0 1px rgba(13, 148, 136, 0.35),
+      0 0 32px rgba(13, 148, 136, 0.28),
+      0 0 64px rgba(13, 148, 136, 0.14);
+  }
+}
+
+/* — Intro text — */
+.qa-card__intro {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: -10px;
+  margin-bottom: 18px;
+}
+
+/* — Q&A list — */
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qa-item {
+  background-color: rgba(15, 23, 42, 0.55);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qa-item__question,
+.qa-item__answer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.qa-item__question {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.qa-item__answer {
+  color: var(--color-text-secondary);
+  background-color: rgba(13, 148, 136, 0.04);
+}
+
+.qa-item__q-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: var(--color-blue-dim);
+  color: var(--color-blue);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.qa-item__a-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: var(--color-teal-dim);
+  color: var(--color-teal);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.qa-item__answer code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-code);
+  background-color: rgba(13, 148, 136, 0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ================================================================
+   12. ARCHITECTURE & CODEBASE QUICK-LINKS CARD
+   ================================================================ */
+.quicklinks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.quicklinks-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quicklinks-item:hover {
+  background-color: var(--color-surface-2);
+  border-color: var(--color-border);
+}
+
+.quicklinks-item__icon {
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
+.quicklinks-item__icon--teal { color: var(--color-teal); }
+.quicklinks-item__icon--blue { color: var(--color-blue); }
+
+.quicklinks-item__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.quicklinks-item__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.quicklinks-item__desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.quicklinks-item__arrow {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.quicklinks-item:hover .quicklinks-item__arrow {
+  transform: translateX(3px);
+  color: var(--color-teal);
+}
+
+/* ================================================================
+   13. MENTOR / BUDDY CONTACT CARD
+   ================================================================ */
+.contact-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-profile__avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.contact-profile__avatar--teal {
+  background: linear-gradient(135deg, var(--color-teal), #0a7a70);
+}
+
+.contact-profile__avatar--blue {
+  background: linear-gradient(135deg, var(--color-blue), #2563eb);
+}
+
+.contact-profile__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.contact-profile__name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.contact-profile__role {
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+}
+
+.contact-profile__dept {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.contact-profile__status {
+  flex-shrink: 0;
+}
+
+/* — Action buttons — */
+.contact-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: var(--radius-xs);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.contact-btn--primary {
+  background-color: var(--color-teal-dim);
+  color: var(--color-teal);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+}
+
+.contact-btn--secondary {
+  background-color: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* — Divider — */
+.contact-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 16px 0;
+}
+
+/* — Check-in box — */
+.buddy-checkin {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+.buddy-checkin__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-teal);
+}
+
+.buddy-checkin__time {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+/* ================================================================
+   14. SCROLLBAR STYLING
+   ================================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ================================================================
+   15. FOCUS STYLES (WCAG AA keyboard accessibility)
+   ================================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* ================================================================
+   16. RESPONSIVE BREAKPOINTS
+   ================================================================ */
+
+/* Tablet — collapse sidebar, 2-col → 1-col grids */
+@media (max-width: 1100px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none; /* collapse on small screens */
+  }
+
+  .content-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 16px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
