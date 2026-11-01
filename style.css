@@ -12,7 +12,7 @@
   --color-surface:      #1E293B;   /* card / sidebar surface */
   --color-surface-2:    #263044;   /* slightly elevated surface */
   --color-border:       #334155;   /* subtle dividers */
-
+ 
   /* — Accent colours — */
   --color-teal:         #0D9488;   /* primary accent */
   --color-teal-dim:     rgba(13, 148, 136, 0.15);
